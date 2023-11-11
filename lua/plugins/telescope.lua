@@ -8,6 +8,7 @@ return {
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end
         )
+        pcall(require('telescope').load_extension, 'fzf')
     end,
     dependencies = { 'nvim-lua/plenary.nvim' }
 }
