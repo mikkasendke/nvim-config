@@ -1,4 +1,5 @@
 vim.api.nvim_exec('language en_US', true)
+vim.api.nvim_set_var("netrw_banner", 0)
 vim.o.termguicolors = true
 
 vim.opt.nu = true
