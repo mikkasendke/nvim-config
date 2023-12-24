@@ -1,5 +1,4 @@
 return {
-    'numToStr/Comment.nvim',
     'hrsh7th/cmp-nvim-lsp',
     'neovim/nvim-lspconfig',
     'williamboman/mason-lspconfig.nvim',

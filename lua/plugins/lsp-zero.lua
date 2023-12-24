@@ -1,6 +1,7 @@
 return {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
+    event = 'VeryLazy',
     config = function()
         local lsp = require('lsp-zero')
 
@@ -16,6 +17,14 @@ return {
             'jsonls',
             'html',
             'lua_ls',
+        })
+
+        require('lspconfig').clangd.setup({
+            cmd = {
+                "clangd",
+                "--background-index",
+                "--clang-tidy"
+            }
         })
 
         local cmp = require('cmp')
