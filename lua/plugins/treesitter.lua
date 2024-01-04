@@ -16,7 +16,6 @@ return {
             "sql",
             "svelte",
             "toml",
-
             "c",
             "lua",
             "vim",
@@ -28,7 +27,7 @@ return {
         sync_install = false,
         highlight = {
             enable = true,
-            additional_vim_regex_highlighting = false,
+            additional_vim_regex_highlighting = true, -- more colors baby
         },
     },
     build = ":TSUpdate"
