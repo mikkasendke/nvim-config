@@ -1,3 +1,9 @@
+
+local is_windows = vim.fn.has("win32")
+
+if is_windows then
+  vim.o.lang = "en_US"
+end
 vim.api.nvim_set_var("netrw_banner", 0)
 vim.o.termguicolors = true
 
@@ -16,6 +22,9 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.local/neovim_undo"
+if is_windows then
+  vim.opt.undodir = os.getenv("HOME") .. "/.config/vim/undodir"
+end
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
