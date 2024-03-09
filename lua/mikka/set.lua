@@ -1,4 +1,3 @@
-vim.api.nvim_exec('language en_US', true)
 vim.api.nvim_set_var("netrw_banner", 0)
 vim.o.termguicolors = true
 
@@ -16,22 +15,50 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = "C:/Users/Mikka/.config/vim/undodir" -- 💀
-
+vim.opt.undodir = os.getenv("HOME") .. "/.local/neovim_undo"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
+
+-- vim.opt.cursorline = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "no"
 vim.opt.isfname:append("@-@")
 
-vim.updatetime = 50
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 750
 
 vim.colorcolumn = 80
 
+
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.g.maplocalleader = " "
+
+vim.keymap.set("n", "<leader>p", vim.cmd.Ex)
+
+vim.api.nvim_create_autocmd("filetype", {
+  pattern = "netrw",
+  desc = "Better mappings for netrw",
+  callback = function()
+      -- Disable t
+    vim.keymap.set("n", "t", "<Nop>", { buffer = true })
+  end
+})
+
+vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end)
+vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end)
+vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
+vim.keymap.set('n', '<leader>ws', function() vim.lsp.buf.workspace_symbol() end)
+vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end)
+vim.keymap.set('n', '<leader>[d', function() vim.diagnostic.goto_prev() end)
+vim.keymap.set('n', '<leader>]d', function() vim.diagnostic.goto_next() end)
+vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end)
+vim.keymap.set('n', '<leader>gr', function() vim.lsp.buf.references() end)
+vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end)
+vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end)
