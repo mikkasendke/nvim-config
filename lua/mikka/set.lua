@@ -21,9 +21,9 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.local/neovim_undo"
+vim.opt.undodir = vim.env.HOME .. "/.local/neovim_undo"
 if is_windows then
-  vim.opt.undodir = os.getenv("HOME") .. "/.config/vim/undodir"
+  vim.opt.undodir = vim.env.HOME .. "/.config/vim/undodir"
 end
 vim.opt.undofile = true
 
