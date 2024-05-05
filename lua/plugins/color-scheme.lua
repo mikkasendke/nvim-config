@@ -1,7 +1,7 @@
 return {
     'rose-pine/neovim',
     name = 'rose-pine',
-    config = function ()
+    config = function()
         require("rose-pine").setup({
             disable_italics = true,
             disable_background = true,
@@ -18,5 +18,7 @@ return {
         vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
         vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
         vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "none" })
+
+        vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
     end
 }

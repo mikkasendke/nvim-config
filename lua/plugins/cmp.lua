@@ -9,11 +9,11 @@ return {
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
         cmp.setup({
             sources = {
-                { name = "copilot", max_item_count = 1 },
+                -- { name = "copilot", max_item_count = 1 },
                 { name = "nvim_lsp" },
                 { name = "path" },
                 { name = "luasnip" },
-                { name = "buffer", keyword_length = 5 }
+                { name = "buffer",  keyword_length = 5 }
             },
             mapping = {
                 ['<C-b>'] = cmp.mapping.select_prev_item(cmp_select),
@@ -24,4 +24,3 @@ return {
         })
     end
 }
-

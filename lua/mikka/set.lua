@@ -1,8 +1,7 @@
-
 local is_windows = vim.fn.has("win32")
 
 if is_windows then
-  vim.o.lang = "en_US"
+    vim.o.lang = "en_US"
 end
 vim.api.nvim_set_var("netrw_banner", 0)
 vim.o.termguicolors = true
@@ -43,8 +42,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 750
 
-vim.colorcolumn = 80
-
+vim.opt.colorcolumn = "101"
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -52,12 +50,12 @@ vim.g.maplocalleader = " "
 vim.keymap.set("n", "<leader>p", vim.cmd.Ex)
 
 vim.api.nvim_create_autocmd("filetype", {
-  pattern = "netrw",
-  desc = "Better mappings for netrw",
-  callback = function()
-      -- Disable t
-    vim.keymap.set("n", "t", "<Nop>", { buffer = true })
-  end
+    pattern = "netrw",
+    desc = "Better mappings for netrw",
+    callback = function()
+        -- Disable t
+        vim.keymap.set("n", "t", "<Nop>", { buffer = true })
+    end
 })
 
 vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end)

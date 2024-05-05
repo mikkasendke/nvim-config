@@ -1,7 +1,7 @@
 return {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy', prevents ls from attaching when starting nvim with file path parameter
     config = function()
         local lsp = require('lsp-zero')
 
@@ -23,17 +23,18 @@ return {
             cmd = {
                 "clangd",
                 "--background-index",
-                "--clang-tidy"
+                "--clang-tidy",
+                "--completion-style=bundled", -- overloads are grouped and such
             }
         })
 
 
         lsp.set_preferences({
-            sign_icons = { }
+            sign_icons = {}
         })
-        -- lsp.on_attach(function(client, buffnr)
-        --     local opts = { buffer = buffnr, remap = false }
-        -- end)
+        lsp.on_attach(function(client, buffnr)
+            --     local opts = { buffer = buffnr, remap = false }
+        end)
 
         lsp.setup()
     end
