@@ -20,5 +20,11 @@ return {
         vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "none" })
 
         vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-    end
+    end,
+    dependencies = {
+        {
+            "nvim-lualine/lualine.nvim",
+            enabled = false,
+        }
+    }
 }

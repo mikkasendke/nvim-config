@@ -29,5 +29,8 @@ return {
             additional_vim_regex_highlighting = true, -- more colors baby
         },
     },
-    build = ":TSUpdate"
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        'nvim-treesitter/nvim-treesitter-context',
+    },
 }
