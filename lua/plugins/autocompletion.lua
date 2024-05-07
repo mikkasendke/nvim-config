@@ -78,7 +78,7 @@ return {
             dependencies = {
                 {
                     "zbirenbaum/copilot.lua",
-                    enabled = true,
+                    enabled = false,
                     opts = {
                         suggestion = { enabled = true },
                         panel = { enabled = false }
