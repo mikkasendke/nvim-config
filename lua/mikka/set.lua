@@ -1,6 +1,6 @@
 local is_windows = vim.fn.has("win32")
 
-vim.cmd("language C")
+vim.cmd("language en_US.UTF8")
 
 vim.api.nvim_set_var("netrw_banner", 0)
 vim.o.termguicolors = true
