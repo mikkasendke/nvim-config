@@ -1,5 +1,5 @@
 return {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     opts = {
         ensure_installed = {
             "rust",
@@ -7,6 +7,7 @@ return {
             "c_sharp",
             "ocaml",
             "php",
+            "c",
             "python",
             "cmake",
             "css",
@@ -16,7 +17,6 @@ return {
             "sql",
             "svelte",
             "toml",
-            "c",
             "lua",
             "vim",
             "vimdoc",
@@ -28,9 +28,13 @@ return {
             enable = true,
             additional_vim_regex_highlighting = true, -- more colors baby
         },
+        autotag = {
+            enable = true,
+        },
     },
     dependencies = {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        'nvim-treesitter/nvim-treesitter-context',
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/nvim-treesitter-context",
+        "windwp/nvim-ts-autotag", -- idk if it works right now
     },
 }

@@ -88,7 +88,9 @@ return {
         },
 
         -- unrelated but fits:
-        "windwp/nvim-ts-autotag",
-        "windwp/nvim-autopairs",
+        {
+            "windwp/nvim-autopairs",
+            opts = {},
+        },
     },
 }
