@@ -8,6 +8,7 @@ return {
             "ocaml",
             "php",
             "c",
+            "zig",
             "python",
             "cmake",
             "css",
