@@ -1,4 +1,4 @@
-local enable_copilot = true
+local enable_copilot = false
 return {
     "hrsh7th/nvim-cmp",
     config = function()
