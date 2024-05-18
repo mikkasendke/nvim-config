@@ -23,7 +23,7 @@ vim.opt.backup = false
 vim.opt.undodir = vim.env.HOME .. "/.local/neovim_undo"
 
 if is_windows then
-  vim.opt.undodir = vim.env.HOME .. "/.config/vim/undodir"
+    vim.opt.undodir = vim.env.HOME .. "/.config/vim/undodir"
 end
 vim.opt.undofile = true
 
@@ -59,14 +59,41 @@ vim.api.nvim_create_autocmd("filetype", {
     end
 })
 
-vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end)
-vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end)
-vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end)
-vim.keymap.set('n', '<leader>ws', function() vim.lsp.buf.workspace_symbol() end)
-vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end)
-vim.keymap.set('n', '<leader>[d', function() vim.diagnostic.goto_prev() end)
-vim.keymap.set('n', '<leader>]d', function() vim.diagnostic.goto_next() end)
-vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end)
-vim.keymap.set('n', '<leader>gr', function() vim.lsp.buf.references() end)
-vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end)
-vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end)
+-- clangd switch source/header
+vim.api.nvim_create_autocmd("filetype", {
+    pattern = "cpp",
+    desc = "Clangd switch source/header",
+    callback = function()
+        vim.keymap.set("n", "<leader>i", function()
+            vim.cmd("ClangdSwitchSourceHeader")
+        end)
+    end
+})
+
+local function toggle_true_false()
+    local word = vim.fn.expand("<cword>")
+    if word == "false" then
+        vim.fn.feedkeys("ciwtrue<esc>")
+    elseif word == "true" then
+        vim.fn.feedkeys("ciwfalse<esc>")
+    end
+end
+
+vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
+vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end)
+vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
+vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end)
+vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
+vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end)
+vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end)
+vim.keymap.set("n", "<leader>[d", function() vim.diagnostic.goto_prev() end)
+vim.keymap.set("n", "<leader>]d", function() vim.diagnostic.goto_next() end)
+vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
+vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end)
+vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end)
+
+
+vim.keymap.set("n", "<up>", "<nop>")
+vim.keymap.set("n", "<down>", "<nop>")
+vim.keymap.set("n", "<left>", "<nop>")
+vim.keymap.set("n", "<right>", "<nop>")

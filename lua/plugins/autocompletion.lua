@@ -1,29 +1,38 @@
+local enable_copilot = true
 return {
     "hrsh7th/nvim-cmp",
     config = function()
         local cmp = require "cmp"
         local luasnip = require "luasnip"
 
+        local sources = {}
+
+        if enable_copilot then table.insert(sources, { name = "copilot", max_item_count = 1 }) end
+        table.insert(sources, { name = "nvim_lsp" })
+        table.insert(sources, { name = "luasnip" })
+        table.insert(sources, { name = "path" })
+        table.insert(sources, { name = "buffer", keyword_length = 4 })
+
         cmp.setup({
-            sources = {
-                -- { name = "copilot", max_item_count = 1 },
-                { name = "nvim_lsp" },
-                { name = "luasnip" },
-                { name = "path" },
-                { name = "buffer",  keyword_length = 4 }
-            },
+            window = { completion = cmp.config.window.bordered(), },
+            sources = sources,
+            snippet = { expand = function(args) luasnip.lsp_expand(args.body) end, },
             mapping = cmp.mapping.preset.insert {
-                ["<C-n>"] = cmp.mapping.select_next_item(),
+                -- I like Ctrl + j/k for navigation better Ctrl + n/p is just leagacy stuff
+                -- ["<C-n>"] = cmp.mapping.select_next_item(),
+                -- ["<C-p>"] = cmp.mapping.select_prev_item(),
                 ["<C-j>"] = cmp.mapping.select_next_item(),
-                ["<C-p>"] = cmp.mapping.select_prev_item(),
                 ["<C-k>"] = cmp.mapping.select_prev_item(),
 
+                -- German keyboards swap z and y and I learned completing on a german keyboard
                 ["<C-z>"] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete {},
 
+                -- Haven't even tried these yet
                 ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
+                -- useful
                 ["<C-l>"] = cmp.mapping(function()
                     if luasnip.expand_or_locally_jumpable() then
                         luasnip.expand_or_jump()
@@ -34,11 +43,6 @@ return {
                         luasnip.jump(-1)
                     end
                 end, { "i", "s" }),
-            },
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end,
             },
             completion = { completeopt = "menu,menuone,noinsert" },
         })
@@ -78,7 +82,7 @@ return {
             dependencies = {
                 {
                     "zbirenbaum/copilot.lua",
-                    enabled = false,
+                    enabled = enable_copilot,
                     opts = {
                         suggestion = { enabled = true },
                         panel = { enabled = false }

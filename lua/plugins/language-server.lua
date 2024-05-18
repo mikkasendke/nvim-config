@@ -19,14 +19,28 @@ return {
             "lua_ls",
         })
 
-        require("lspconfig").clangd.setup({
+        local lspconfig = require("lspconfig")
+
+        lspconfig.clangd.setup {
             cmd = {
                 "clangd",
                 "--background-index",
                 "--clang-tidy",
                 "--completion-style=bundled", -- overloads are grouped and such
             }
-        })
+        }
+        lspconfig.lua_ls.setup {
+            settings = {
+                Lua = {
+                    runtime = {
+                        version = "LuaJIT",
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file("", true),
+                    },
+                },
+            },
+        }
 
 
         lsp.set_preferences({
