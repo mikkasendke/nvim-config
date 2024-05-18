@@ -14,13 +14,14 @@ return {
         table.insert(sources, { name = "buffer", keyword_length = 4 })
 
         cmp.setup({
-            window = { completion = cmp.config.window.bordered(), },
+            -- window = { completion = cmp.config.window.bordered(), },
             sources = sources,
             snippet = { expand = function(args) luasnip.lsp_expand(args.body) end, },
             mapping = cmp.mapping.preset.insert {
                 -- I like Ctrl + j/k for navigation better Ctrl + n/p is just leagacy stuff
                 -- ["<C-n>"] = cmp.mapping.select_next_item(),
                 -- ["<C-p>"] = cmp.mapping.select_prev_item(),
+
                 ["<C-j>"] = cmp.mapping.select_next_item(),
                 ["<C-k>"] = cmp.mapping.select_prev_item(),
 

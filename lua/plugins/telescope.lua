@@ -4,6 +4,7 @@ return {
     -- event = "VeryLazy",
     config = function()
         local builtin = require("telescope.builtin")
+        local actions = require("telescope.actions")
 
         vim.keymap.set("n", "<C-p>", builtin.git_files, {})
         vim.keymap.set("n", "<leader>s", builtin.find_files, {})
@@ -26,6 +27,16 @@ return {
                     "CMakeCache.txt",
                     "cmake_install.cmake",
                     "node_modules",
+                },
+                mappings = {
+                    i = {
+                        ["<Esc>"] = actions.close,
+
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-k>"] = actions.move_selection_previous,
+
+                        ["<C-q>"] = actions.send_to_qflist,
+                    },
                 },
             },
         }
