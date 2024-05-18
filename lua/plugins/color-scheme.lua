@@ -1,3 +1,4 @@
+local colorscheme = "rose-pine"
 return {
     'rose-pine/neovim',
     name = 'rose-pine',
@@ -10,7 +11,7 @@ return {
             }
         })
 
-        vim.cmd('colorscheme rose-pine')
+        vim.cmd('colorscheme ' .. colorscheme)
 
         vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
         vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -25,6 +26,10 @@ return {
         {
             "nvim-lualine/lualine.nvim",
             enabled = false,
-        }
+        },
+        {
+            "ellisonleao/gruvbox.nvim",
+            enabled = colorscheme == "gruvbox",
+        },
     }
 }
