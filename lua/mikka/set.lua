@@ -8,6 +8,9 @@ vim.o.termguicolors = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+vim.opt.title = true
+vim.opt.titlestring = [[%t - %{fnamemodify(getcwd(), ':t')} - nvim]]
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
