@@ -13,7 +13,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.smartindent = true
+-- vim.opt.smartindent = true
+vim.opt.smartindent = false
 
 vim.opt.wrap = false
 
@@ -70,15 +71,6 @@ vim.api.nvim_create_autocmd("filetype", {
     end
 })
 
-local function toggle_true_false()
-    local word = vim.fn.expand("<cword>")
-    if word == "false" then
-        vim.fn.feedkeys("ciwtrue<esc>")
-    elseif word == "true" then
-        vim.fn.feedkeys("ciwfalse<esc>")
-    end
-end
-
 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
 vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end)
 vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
@@ -86,8 +78,8 @@ vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end)
 vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
 vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end)
 vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end)
-vim.keymap.set("n", "<leader>[d", function() vim.diagnostic.goto_prev() end)
-vim.keymap.set("n", "<leader>]d", function() vim.diagnostic.goto_next() end)
+vim.keymap.set("n", "<leader>>d", function() vim.diagnostic.goto_prev() end)
+vim.keymap.set("n", "<leader><d", function() vim.diagnostic.goto_next() end)
 vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
 vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end)
 vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end)

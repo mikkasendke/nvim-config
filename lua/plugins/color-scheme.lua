@@ -1,7 +1,7 @@
--- local colorscheme = "rose-pine"
-local colorscheme = "gruvbox"
+local colorscheme = "rose-pine"
+-- local colorscheme = "gruvbox"
 -- local colorscheme = "tokyonight-moon"
-local function standard_colorscheme()
+local function standard_stuff()
     vim.cmd("colorscheme " .. colorscheme)
 
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -20,8 +20,7 @@ end
 return {
     {
         "rose-pine/neovim",
-        enabled = colorscheme == "rose-pine",
-        config = standard_colorscheme,
+        cond = colorscheme == "rose-pine",
         opts = {
             disable_italics = true,
             disable_background = true,
@@ -29,26 +28,31 @@ return {
                 italic = false,
             }
         },
+        config = function(_, opts)
+            require "rose-pine".setup(opts)
+            standard_stuff()
+        end
     },
     {
         "ellisonleao/gruvbox.nvim",
-        enabled = colorscheme == "gruvbox",
-        config = standard_colorscheme,
+        cond = colorscheme == "gruvbox",
+        config = standard_stuff,
     },
     {
         "folke/tokyonight.nvim",
-        enabled = colorscheme == "tokyonight-moon",
-        config = function()
-            require("tokyonight").setup({
-                style = "moon",
-                transparent = true,
-                terminal_colors = true,
-                styles = {
-                    comments = { italic = false },
-                    keywords = { italic = false },
-                },
-            })
-            standard_colorscheme()
+        cond = colorscheme == "tokyonight-moon",
+        opts = {
+            style = "moon",
+            transparent = true,
+            terminal_colors = true,
+            styles = {
+                comments = { italic = true },
+                keywords = { italic = false },
+            },
+        },
+        config = function(_, opts)
+            require "tokyonight".setup(opts)
+            standard_stuff()
         end
     },
     {
