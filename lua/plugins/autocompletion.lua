@@ -91,6 +91,7 @@ return {
         -- unrelated but fits:
         {
             "windwp/nvim-autopairs",
+            enabled = false,
             opts = {},
         },
     },

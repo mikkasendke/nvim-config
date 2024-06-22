@@ -69,6 +69,9 @@ vim.api.nvim_create_autocmd("filetype", {
     desc = "Clangd switch source/header",
     callback = function()
         vim.keymap.set("n", "<leader>i", function()
+            if not next(vim.lsp.get_clients({ name = "clangd", bufnr = 0 })) then
+                return
+            end
             vim.cmd("ClangdSwitchSourceHeader")
         end)
     end
@@ -92,3 +95,10 @@ vim.keymap.set("n", "<up>", "<nop>")
 vim.keymap.set("n", "<down>", "<nop>")
 vim.keymap.set("n", "<left>", "<nop>")
 vim.keymap.set("n", "<right>", "<nop>")
+
+vim.keymap.set("n", "<C->>", function()
+    vim.cmd("m+1")
+end)
+vim.keymap.set("n", "<C-<>", function()
+    vim.cmd("m-2")
+end)
