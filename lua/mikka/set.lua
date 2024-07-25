@@ -102,3 +102,6 @@ end)
 vim.keymap.set("n", "<C-<>", function()
     vim.cmd("m-2")
 end)
+
+vim.keymap.set("n", "<C-D>", "<C-D>zz")
+vim.keymap.set("n", "<C-U>", "<C-U>zz")
