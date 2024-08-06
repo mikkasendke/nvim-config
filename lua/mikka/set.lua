@@ -26,9 +26,6 @@ vim.opt.backup = false
 
 vim.opt.undodir = vim.env.HOME .. "/.local/neovim_undo"
 
-if is_windows then
-    vim.opt.undodir = vim.env.HOME .. "/.config/vim/undodir"
-end
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false

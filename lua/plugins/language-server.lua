@@ -7,16 +7,16 @@ return {
 
         lsp.preset("recommended")
         lsp.ensure_installed({
-            "rust_analyzer",
-            "clangd",
-            "asm_lsp",
-            "csharp_ls",
-            "tsserver",
-            "eslint",
-            "emmet_language_server",
-            "jsonls",
-            "html",
-            "lua_ls",
+            -- "rust_analyzer",
+            -- "clangd",
+            -- "asm_lsp",
+            -- "csharp_ls",
+            -- "tsserver",
+            -- "eslint",
+            -- "emmet_language_server",
+            -- "jsonls",
+            -- "html",
+            -- "lua_ls",
         })
 
         local lspconfig = require("lspconfig")
