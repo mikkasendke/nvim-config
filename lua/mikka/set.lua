@@ -74,6 +74,11 @@ vim.api.nvim_create_autocmd("filetype", {
     end
 })
 
+vim.keymap.set("n", "<leader>vr", function()
+    vim.cmd("term wezterm --config-file=./dev_config.lua")
+end)
+
+
 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
 vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end)
 vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
@@ -86,6 +91,9 @@ vim.keymap.set("n", "<leader><d", function() vim.diagnostic.goto_next() end)
 vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
 vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end)
 vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end)
+
+
+vim.keymap.set({ "n", "v" }, "<leader>c", "\"+")
 
 
 vim.keymap.set("n", "<up>", "<nop>")

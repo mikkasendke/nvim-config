@@ -16,7 +16,7 @@ return {
             -- "emmet_language_server",
             -- "jsonls",
             -- "html",
-            -- "lua_ls",
+            "lua_ls",
         })
 
         local lspconfig = require("lspconfig")
@@ -29,6 +29,11 @@ return {
                 "--completion-style=bundled", -- overloads are grouped and such
             }
         }
+
+        local function get_lua_lib()
+            return "" or not vim.api.nvim_get_runtime_file("", true)
+        end
+
         lspconfig.lua_ls.setup {
             settings = {
                 Lua = {
@@ -36,7 +41,7 @@ return {
                         version = "LuaJIT",
                     },
                     workspace = {
-                        library = vim.api.nvim_get_runtime_file("", true),
+                        library = get_lua_lib()
                     },
                 },
             },

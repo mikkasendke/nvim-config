@@ -21,6 +21,11 @@ return {
         pcall(require("telescope").load_extension, "fzf")
 
         require("telescope").setup {
+            extensions = {
+                ['ui-select'] = {
+                    require('telescope.themes').get_dropdown(),
+                },
+            },
             defaults = {
                 file_ignore_patterns = {
                     "CMakeFiles",
@@ -40,6 +45,8 @@ return {
                 },
             },
         }
+        pcall(require('telescope').load_extension, 'fzf')
+        pcall(require('telescope').load_extension, 'ui-select')
     end,
     dependencies = {
         "nvim-lua/plenary.nvim",
@@ -49,6 +56,7 @@ return {
             cond = function()
                 return vim.fn.executable "make" == 1
             end,
-        }
+        },
+        "nvim-telescope/telescope-ui-select.nvim",
     }
 }
