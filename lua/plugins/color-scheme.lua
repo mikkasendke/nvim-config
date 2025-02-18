@@ -1,6 +1,6 @@
 -- local default_colorscheme = "rose-pine"
-local default_colorscheme = "gruvbox"
--- local default_colorscheme = "tokyonight-moon"
+-- local default_colorscheme = "gruvbox"
+local default_colorscheme = "tokyonight"
 vim.api.nvim_create_autocmd("ColorScheme", {
     callback = function(e)
         -- print(e.match)

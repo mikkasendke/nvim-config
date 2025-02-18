@@ -30,17 +30,17 @@ return {
                     ["<C-z>"] = cmp.mapping.confirm({ select = true }),
                     ["<C-Space>"] = cmp.mapping.complete {},
 
-                    -- useful
-                    ["<C->>"] = cmp.mapping(function()
-                        if luasnip.expand_or_locally_jumpable() then
-                            luasnip.expand_or_jump()
-                        end
-                    end, { "i", "s" }),
-                    ["<C-<>"] = cmp.mapping(function()
-                        if luasnip.locally_jumpable(-1) then
-                            luasnip.jump(-1)
-                        end
-                    end, { "i", "s" }),
+                    -- useful but makes < behave weirdly
+                    -- ["<C->>"] = cmp.mapping(function()
+                    --     if luasnip.expand_or_locally_jumpable() then
+                    --         luasnip.expand_or_jump()
+                    --     end
+                    -- end, { "i", "s" }),
+                    -- ["<C-<>"] = cmp.mapping(function()
+                    --     if luasnip.locally_jumpable(-1) then
+                    --         luasnip.jump(-1)
+                    --     end
+                    -- end, { "i", "s" }),
                 },
                 completion = { completeopt = "menu,menuone,noinsert" },
             })

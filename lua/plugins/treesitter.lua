@@ -62,30 +62,27 @@ return {
             move = {
                 enable = true,
                 goto_next_start = {
-                    [">f"] = "@function.inner",
-                    [">c"] = "@class.outer",
-                    [">a"] = "@parameter.inner",
+                    ["<leader>>f"] = "@function.inner",
+                    ["<leader>>c"] = "@class.outer",
+                    ["<leader>>a"] = "@parameter.inner",
                 },
                 goto_previous_start = {
-                    ["<f"] = "@function.inner",
-                    ["<c"] = "@class.outer",
-                    ["<a"] = "@parameter.inner",
+                    ["<leader><f"] = "@function.inner",
+                    ["<leader><c"] = "@class.outer",
+                    ["<leader><a"] = "@parameter.inner",
                 },
 
                 goto_next_end = {
-                    [">F"] = "@function.inner",
-                    [">C"] = "@class.outer",
-                    [">A"] = "@parameter.inner",
+                    ["<leader>>F"] = "@function.inner",
+                    ["<leader>>C"] = "@class.outer",
+                    ["<leader>>A"] = "@parameter.inner",
                 },
                 goto_previous_end = {
-                    ["<F"] = "@function.inner",
-                    ["<C"] = "@class.outer",
-                    ["<A"] = "@parameter.inner",
+                    ["<leader><F"] = "@function.inner",
+                    ["<leader><C"] = "@class.outer",
+                    ["<leader><A"] = "@parameter.inner",
                 },
             },
-        },
-        autotag = {
-            enable = true,
         },
     },
     config = function(_, opts)
@@ -93,7 +90,10 @@ return {
     end,
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        "windwp/nvim-ts-autotag",
+        {
+            "windwp/nvim-ts-autotag",
+            opts = {},
+        },
         {
             "nvim-treesitter/nvim-treesitter-context",
             cond = false,

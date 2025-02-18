@@ -3,10 +3,14 @@ local is_windows = vim.fn.has("win32")
 vim.cmd("language en_US.UTF8")
 
 vim.api.nvim_set_var("netrw_banner", 0)
+-- vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\(\.\./\)\|\(\./\)$]] -- NOTE: This hides only ./ and ../
+vim.g.netrw_list_hide =
+[[\(^\|\s\s\)\zs\.\S\+]] -- NOTE: This hides all dotfiles view them with a or just gh; okay yes hide all dotfiles and gh to see them.
 vim.o.termguicolors = true
+-- vim.g.netrw_bufsettings = "rnu nu" FIX: this somehow prevents quitting after gh
 
-vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.number = true
 
 vim.opt.title = true
 vim.opt.titlestring = [[%t - %{fnamemodify(getcwd(), ':t')} - nvim]]
@@ -35,7 +39,9 @@ vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+-- vim.opt.cursorlineopt = "line"
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "no"
@@ -79,6 +85,8 @@ vim.keymap.set("n", "<leader>vr", function()
 end)
 
 
+
+
 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
 vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end)
 vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
@@ -90,7 +98,7 @@ vim.keymap.set("n", "<leader>>d", function() vim.diagnostic.goto_prev() end)
 vim.keymap.set("n", "<leader><d", function() vim.diagnostic.goto_next() end)
 vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
 vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end)
-vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end)
+vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end) -- kwa sounds like quoi which means what
 
 
 vim.keymap.set({ "n", "v" }, "<leader>c", "\"+")
@@ -110,3 +118,6 @@ end)
 
 vim.keymap.set("n", "<C-D>", "<C-D>zz")
 vim.keymap.set("n", "<C-U>", "<C-U>zz")
+
+-- vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz") -- using <leader>j for harpoon now
+-- vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz")

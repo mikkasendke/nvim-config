@@ -7,7 +7,7 @@ return {
 
         lsp.preset("recommended")
         lsp.ensure_installed({
-            -- "rust_analyzer",
+            "rust_analyzer",
             -- "clangd",
             -- "asm_lsp",
             -- "csharp_ls",
@@ -30,22 +30,56 @@ return {
             }
         }
 
-        local function get_lua_lib()
-            return "" or not vim.api.nvim_get_runtime_file("", true)
-        end
-
-        lspconfig.lua_ls.setup {
-            settings = {
-                Lua = {
-                    runtime = {
-                        version = "LuaJIT",
-                    },
-                    workspace = {
-                        library = get_lua_lib()
-                    },
-                },
+        lspconfig.emmet_language_server.setup {
+            filetypes = {
+                "css",
+                "eruby",
+                "html",
+                "javascript",
+                "javascriptreact",
+                "less",
+                "sass",
+                "scss",
+                "pug",
+                "typescriptreact",
+                "templ"
             },
         }
+
+        -- local function get_lua_lib()
+        --     return "" --or not vim.api.nvim_get_runtime_file("", true)
+        -- end
+        --
+        -- lspconfig.lua_ls.setup {
+        --     settings = {
+        --         Lua = {
+        --             runtime = {
+        --                 version = "LuaJIT",
+        --             },
+        --             -- workspace = {
+        --             --     library = get_lua_lib()
+        --             -- },
+        --         },
+        --     },
+        -- }
+
+        local locations_to_items = vim.lsp.util.locations_to_items
+        vim.lsp.util.locations_to_items = function(locations, offset_encoding)
+            local lines = {}
+            local loc_i = 1
+            for _, loc in ipairs(vim.deepcopy(locations)) do
+                local uri = loc.uri or loc.targetUri
+                local range = loc.range or loc.targetSelectionRange
+                if lines[uri .. range.start.line] then -- already have a location on this line
+                    table.remove(locations, loc_i)     -- remove from the original list
+                else
+                    loc_i = loc_i + 1
+                end
+                lines[uri .. range.start.line] = true
+            end
+
+            return locations_to_items(locations, offset_encoding)
+        end
 
 
         lsp.set_preferences({
@@ -71,5 +105,9 @@ return {
                 },
             },
         },
+        {
+            "norcalli/nvim-colorizer.lua",
+            opts = {},
+        }
     },
 }
