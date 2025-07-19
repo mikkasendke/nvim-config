@@ -2,6 +2,7 @@ local enable_copilot = false
 return {
     {
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
         config = function()
             local cmp = require "cmp"
             local luasnip = require "luasnip"

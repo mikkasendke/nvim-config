@@ -1,7 +1,9 @@
 return {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
-    -- event = "VeryLazy", prevents ls from attaching when starting nvim with file path parameter
+    -- event = "VeryLazy", -- prevents ls from attaching when starting nvim with file path parameter
+    -- event = "LazyFile",
+    event = { "BufReadPost", "BufNewFile" }, -- "BufWritePost", maybe too
     config = function()
         local lsp = require("lsp-zero")
 
@@ -45,6 +47,19 @@ return {
                 "templ"
             },
         }
+
+        -- lspconfig.tailwindcss.setup({
+        --     filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        --     settings = {
+        --         tailwindCSS = {
+        --             includeLanguages = {
+        --                 templ = "html",
+        --             },
+        --         },
+        --     },
+        -- })
+
+        vim.diagnostic.config({ --[[ virtual_lines = true, ]] virtual_text = true })
 
         -- local function get_lua_lib()
         --     return "" --or not vim.api.nvim_get_runtime_file("", true)

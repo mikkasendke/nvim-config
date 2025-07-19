@@ -2,12 +2,27 @@ local is_windows = vim.fn.has("win32")
 
 vim.cmd("language en_US.UTF8")
 
+
+vim.opt.wrap = false
+-- vim.opt.wrap = true
+-- vim.opt.linebreak = true
+-- vim.opt.breakindent = true
+
 vim.api.nvim_set_var("netrw_banner", 0)
--- vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\(\.\./\)\|\(\./\)$]] -- NOTE: This hides only ./ and ../
 vim.g.netrw_list_hide =
-[[\(^\|\s\s\)\zs\.\S\+]] -- NOTE: This hides all dotfiles view them with a or just gh; okay yes hide all dotfiles and gh to see them.
-vim.o.termguicolors = true
+[[_templ.go$,^\..*]]
+
+-- NOTE: This hides all dotfiles view them with a or just gh; okay yes hide all dotfiles and gh to see them.
+-- NEW NOTe: I finally got it gh just appends a dotfile filter to the hidelist so this was unnecessary
+-- and I'll just hide _templ.go and enable gh by default and then we're set
+
+-- [[\(^\|\s\s\)\zs\.\S\+]] old
+-- vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\(\.\./\)\|\(\./\)$]] -- NOTE: This hides only ./ and ../
+
+
 -- vim.g.netrw_bufsettings = "rnu nu" FIX: this somehow prevents quitting after gh
+
+vim.o.termguicolors = true
 
 vim.opt.relativenumber = true
 vim.opt.number = true
@@ -23,7 +38,6 @@ vim.opt.expandtab = true
 -- vim.opt.smartindent = true
 vim.opt.smartindent = false
 
-vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -53,9 +67,9 @@ vim.opt.timeoutlen = 750
 vim.opt.colorcolumn = "101"
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<leader>p", vim.cmd.Ex)
+vim.keymap.set("i", "<C-l>", "<right>")
 
 vim.api.nvim_create_autocmd("filetype", {
     pattern = "netrw",
@@ -118,6 +132,9 @@ end)
 
 vim.keymap.set("n", "<C-D>", "<C-D>zz")
 vim.keymap.set("n", "<C-U>", "<C-U>zz")
+
+vim.keymap.set("n", "<leader>ibl", function() vim.cmd("IBLToggle") end)
+vim.keymap.set("n", "<leader>inj", function() vim.cmd("TSEditQueryUserAfter injections") end)
 
 -- vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz") -- using <leader>j for harpoon now
 -- vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz")
