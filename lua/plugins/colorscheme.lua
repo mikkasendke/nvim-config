@@ -1,26 +1,6 @@
 -- local default_colorscheme = "rose-pine"
 -- local default_colorscheme = "gruvbox"
 local default_colorscheme = "tokyonight"
-vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function(e)
-        -- vim.print(e)
-
-        if e.match ~= "gruvbox" then
-            vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-            vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-            vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-
-            vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-            vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
-            vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "none" })
-            vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
-            vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = "none" })
-
-            vim.api.nvim_set_hl(0, "TroubleNormal", { bg = "none" })
-        end
-    end
-})
 
 local function load_default()
     vim.cmd("colorscheme " .. default_colorscheme)
@@ -59,6 +39,8 @@ return {
             styles = {
                 comments = { italic = true },
                 keywords = { italic = false },
+                sidebars = "transparent",
+                floats = "transparent",
             },
         },
         config = function(_, opts)
@@ -102,6 +84,8 @@ return {
                     highlight = "IblIndentCustom"
                 }
             }
+
+            vim.keymap.set("n", "<leader>ibl", function() vim.cmd("IBLToggle") end)
         end,
     },
 }

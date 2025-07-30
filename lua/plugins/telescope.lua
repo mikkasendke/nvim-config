@@ -38,8 +38,8 @@ return {
                     i = {
                         ["<Esc>"] = actions.close,
 
-                        ["<C-j>"] = actions.move_selection_next,
-                        ["<C-k>"] = actions.move_selection_previous,
+                        -- ["<C-j>"] = actions.move_selection_next,
+                        -- ["<C-k>"] = actions.move_selection_previous,
 
                         ["<C-q>"] = actions.send_to_qflist,
                     },
